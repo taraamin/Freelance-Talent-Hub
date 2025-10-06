@@ -1,0 +1,10 @@
+# Backend build artifacts
+PopStarManagerAPI/bin/
+PopStarManagerAPI/obj/
+
+# Frontend dependencies and build output
+popstar-frontend/node_modules/
+popstar-frontend/dist/
+
+# Local environment overrides
+*.env
