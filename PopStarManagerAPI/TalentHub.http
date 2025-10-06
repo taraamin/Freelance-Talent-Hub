@@ -1,0 +1,39 @@
+@TalentHub_HostAddress = http://localhost:5071
+
+### Fetch all talent profiles
+GET {{TalentHub_HostAddress}}/api/talent
+Accept: application/json
+
+### Fetch a single profile
+GET {{TalentHub_HostAddress}}/api/talent/1
+Accept: application/json
+
+### Search by name
+GET {{TalentHub_HostAddress}}/api/talent/search?name=maya
+Accept: application/json
+
+### Create a talent profile
+POST {{TalentHub_HostAddress}}/api/talent
+Content-Type: multipart/form-data; boundary=TalentBoundary
+
+--TalentBoundary
+Content-Disposition: form-data; name="name"
+
+Maya Lindberg
+--TalentBoundary
+Content-Disposition: form-data; name="category"
+
+Photographer
+--TalentBoundary
+Content-Disposition: form-data; name="pricePerHour"
+
+1800
+--TalentBoundary
+Content-Disposition: form-data; name="email"
+
+bookings@mayalindberg.com
+--TalentBoundary
+Content-Disposition: form-data; name="phone"
+
++47 400 00 000
+--TalentBoundary--

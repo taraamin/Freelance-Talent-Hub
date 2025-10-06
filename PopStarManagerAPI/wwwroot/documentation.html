@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PopStarManagerAPI Documentation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2em; line-height: 1.6; }
+    h1, h2, h3 { color: #333; }
+    pre { background: #f4f4f4; padding: 1em; border: 1px solid #ddd; overflow-x: auto; }
+    code { background: #eee; padding: 0.2em 0.4em; }
+    ul { margin-left: 20px; }
+  </style>
+</head>
+<body>
+  <h1>PopStarManagerAPI Documentation</h1>
+  <p>This document provides an overview of the available API endpoints and their usage.</p>
+  
+  <h2>Base URL</h2>
+  <p>The base URL for the API is: <code>http://localhost:5071/api/popstar</code></p>
+  
+  <h2>Endpoints</h2>
+  
+  <h3>GET /api/popstar</h3>
+  <p>Retrieves all musicians.</p>
+  <pre>
+Response:
+[
+  {
+    "id": 1,
+    "name": "Ariana Grande",
+    "category": "Pop",
+    "pricePerHour": 16,
+    "imageUrl": "/images/Ariana.jpg"
+  },
+  ...
+]
+  </pre>
+  
+  <h3>GET /api/popstar/{id}</h3>
+  <p>Retrieves a musician by ID.</p>
+  <pre>
+Request:
+GET /api/popstar/1
+
+Response:
+{
+  "id": 1,
+  "name": "Ariana Grande",
+  "category": "Pop",
+  "pricePerHour": 16,
+  "imageUrl": "/images/Ariana.jpg"
+}
+  </pre>
+  
+  <h3>GET /api/popstar/search?name={name}</h3>
+  <p>Searches for musicians whose names contain the provided query string.</p>
+  <pre>
+Request:
+GET /api/popstar/search?name=Ariana
+
+Response:
+[
+  {
+    "id": 1,
+    "name": "Ariana Grande",
+    "category": "Pop",
+    "pricePerHour": 16,
+    "imageUrl": "/images/Ariana.jpg"
+  }
+]
+  </pre>
+  
+  <h3>POST /api/popstar</h3>
+  <p>Creates a new musician. This endpoint accepts <code>multipart/form-data</code> with the following fields:</p>
+  <ul>
+    <li><code>Name</code> (string, required)</li>
+    <li><code>Category</code> (string, required)</li>
+    <li><code>PricePerHour</code> (decimal, required)</li>
+    <li><code>ImageFile</code> (file, optional)</li>
+  </ul>
+  <pre>
+Request (multipart/form-data):
+Name: Ariana Grande
+Category: Pop
+PricePerHour: 16
+ImageFile: [File]
+
+Response:
+{
+  "id": 2,
+  "name": "Ariana Grande",
+  "category": "Pop",
+  "pricePerHour": 16,
+  "imageUrl": "/images/Ariana.jpg"
+}
+  </pre>
+  
+  <h3>PUT /api/popstar/{id}</h3>
+  <p>Updates an existing musician. Accepts a JSON body with updated fields.</p>
+  <pre>
+Request:
+PUT /api/popstar/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "Ariana Grande Updated",
+  "category": "Pop",
+  "pricePerHour": 20,
+  "imageUrl": "/images/Ariana.jpg"
+}
+
+Response:
+204 No Content
+  </pre>
+  
+  <h3>DELETE /api/popstar/{id}</h3>
+  <p>Deletes a musician by ID.</p>
+  <pre>
+Request:
+DELETE /api/popstar/1
+
+Response:
+204 No Content
+  </pre>
+  
+  <h2>Notes</h2>
+  <p>If uploading an image, ensure the request uses <code>multipart/form-data</code> encoding. Uploaded images are stored in the <code>wwwroot/images</code> folder and served as static files.</p>
+  <p>For further questions, please contact the API developer.</p>
+</body>
+</html>
